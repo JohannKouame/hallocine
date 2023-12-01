@@ -1,0 +1,142 @@
+<!doctype>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Mon magasin en ligne 100% bons plans</title>
+        <!-- Load Vue followed by Vue Router -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <nav>
+              <div class="img">
+                <img src="../../assets/JK_BlueF.png" alt="">
+              </div>
+              <div class="onglets">
+                <router-link class="link" id="home" to='/'>Accueil</router-link>
+                <router-link class="link" id="panier" to='/panier'>Panier</router-link>
+                <router-link class="link invisible" id="homeroot" to='/homeroot'>Homeroot</router-link>
+                <router-link class="link" id="login" to='/login'>Log in</router-link>
+            </div>
+          </nav>
+          <main>
+            <router-view
+              :articles="articles"
+              :pan="panier"
+              @addarticle="addarticle"
+              @add-user="addUser"
+              @addpanier="addpanier"
+              @checkuser="checkuser"
+              @logout="logout"
+              @deletearticle="deletearticle"
+              @update-article="updateArticle"
+            ></router-view>
+          </main>
+        </div>
+        <script src="./vue-application.js"></script>
+        
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap');
+          *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Source Sans Pro', sans-serif;
+          }
+
+          img{
+            width: 30px;
+            height: 30px;
+          }
+          body{
+            background-color: rgb(248, 248, 248);
+          }
+          nav{
+            position: sticky;
+            top: 0px;
+            padding : 10px 10px;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.368);
+            z-index: 2;
+          }
+          nav .onglets{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            width: 30%;
+          }
+          nav .onglets a{
+              text-decoration: none;
+              position: relative;
+              font-size: 16px;
+              color: #00B0F0;
+              font-family: 'Source Sans Pro', sans-serif;
+              transition: 0.2s;
+          }
+
+          nav .onglets a.sign{
+            border: 2px solid #ff6600;
+            border-radius: 3px;
+            color: #ff6600;
+            background-color: #fff;
+            padding: 5px 10px;
+            font-size: 16px;
+            transition: 0.2s;
+          }
+          
+          nav .onglets a.sign:hover{
+            color: #fff;
+            background-color: #ff6600;
+            transition: 0.2s;
+          }
+
+          nav .onglets div.notif{
+              font-size: 13px;
+              border-radius: 100px;
+              padding: 2px 6px;
+              background-color: #2c3e50;
+              position: absolute;
+              top: -2px;
+              left: 15px;
+              color: var(--blanc);
+              visibility: hidden;
+          }
+
+          .link:hover{
+            transform: scale(1.05);
+            color: #2c3e50;
+            transition: 0.2s;
+          }
+          nav .onglets a#login{
+            /* border: 2px solid #ff6600; */
+            border-radius: 3px;
+            color: #ff6600;
+            background-color: #fff;
+            padding: 5px 10px;
+            font-size: 16px;
+            transition: 0.2s;
+          }
+          nav .onglets a#login:hover{
+            color: #fff;
+            background-color: #ff6600;
+            transition: 0.2s;
+          }
+          nav a#login.router-link-exact-active{
+            color: #fff;
+            background-color: #ff6600;
+          }
+          nav a.router-link-exact-active{
+            border-bottom: 2px solid;
+            color: #2c3e50;
+          }
+        </style>
+    </body>
+</html>
